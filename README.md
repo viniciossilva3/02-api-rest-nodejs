@@ -139,7 +139,6 @@ $ npm i -D @types/node
 #Install tsx to transpile and execute your code automatically
 $ npm i -D tsx
 ```
-
 ### Fourteenth step:
 
 - Create a new script on the package.json to automate execution from the TSX on your project.
@@ -150,6 +149,39 @@ $ npm i -D tsx
 {
     "scripts": {
     "dev": "tsx watch src/server.ts"
+  },
+}
+```
+### Fifteenth step:
+
+- Install ESLint dependency and EsLint Extension for improved code consistency and error detection.
+- Install EsLint config from Rocketseat to help and standardize your code styling.
+
+```bash
+# ESLint to improve code consistency and error detection. This helps identify and fix issues in your code..
+$ npm i -D eslint  @rocketseat/eslint-config
+``` 
+### Sixteenth step:
+
+- Create a .eslintrc.json file on workspace of your project and add the following code:
+
+```bash
+".eslintrc.json"
+{
+    "extends": [
+        "@rocketseat/eslint-config/node"
+    ]
+}
+```
+### Seventeenth step:
+
+- Create a new script to detect and fix lint errors  automatically and standardize your code styling.
+
+```bash
+"package.json"
+{
+    "scripts": {
+    "lint": "eslint src --ext .ts --fix"
   },
 }
 ```
