@@ -185,3 +185,29 @@ $ npm i -D eslint  @rocketseat/eslint-config
   },
 }
 ```
+### Eigteenth step:
+
+- Install and configure the [Knex](https://knexjs.org/guide/#node-js) query builder. 
+- The Knex Installation is for help you with  easy write queries on your database without write sql language.
+
+```bash
+#Install Knex and the driver for the database chosen for you, is the sqlite in this case
+$ npm knex sqlite3
+```
+### Nineteenth step:
+
+- Create de database configuration file on workspace.
+- Create a database.ts file and add the following configuration for the sqlite3 connection.
+
+```bash
+"database.ts"
+#Database configuration
+import { knex as setupKnex } from 'knex'
+
+export const knex = setupKnex({
+  client: 'sqlite',
+  connection: {
+    filename: './tmp/app.db',
+  },
+})
+```
