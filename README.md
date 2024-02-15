@@ -196,18 +196,44 @@ $ npm knex sqlite3
 ```
 ### Nineteenth step:
 
-- Create de database configuration file on workspace.
+- Create de database configuration file on src directory.
 - Create a database.ts file and add the following configuration for the sqlite3 connection.
 
 ```bash
 "database.ts"
 #Database configuration
-import { knex as setupKnex } from 'knex'
+import { knex as setupKnex, Knex } from 'knex'
 
-export const knex = setupKnex({
+export const config: Knex.Config = {
   client: 'sqlite',
   connection: {
-    filename: './tmp/app.db',
+    filename: './db/app.db',
   },
-})
+  useNullAsDefault: true,
+  migrations: {
+    extension: 'ts',
+    directory: './db/migrations',
+  },
+}
+export const knex = setupKnex(config)
 ```
+- Create the knexfile.ts on workspace for export the database config.
+
+```bash
+"knexfile.ts"
+import { config } from './src/database'
+
+export default config
+```
+### Twentieth step:
+- Create a new script on your package.json with the following command for be posible read and run tsx files with knex:
+
+```bash
+"knex": "node --import tsx ./node_modules/knex/bin/cli.js"
+``` 
+- For create the migrations file you can execute the following steps on your terminal.
+
+```bash
+#Create migrations file using the knex
+$ npm run knex migrate:make name-your-file
+``` 
