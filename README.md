@@ -237,3 +237,36 @@ export default config
 #Create migrations file using the knex
 $ npm run knex migrate:make name-your-file
 ``` 
+- Add the code for your migration with the data for the your table and columns with the following example.
+- The Up function is for the add all created table and columns.
+- The Down function is for the remove all the table and columns created from the Up function.
+
+```bash
+"migration-create-transaction.ts"
+import type { Knex } from 'knex'
+
+export async function up(knex: Knex): Promise<void> {
+  await knex.schema.createTable('transactions', (table) => {
+    table.uuid('id').primary()
+    table.text('title').notNullable()
+    table.decimal('amount', 10, 2).notNullable()
+    table.timestamp('created_at').defaultTo(knex.fn.now()).notNullable()
+  })
+}
+
+export async function down(knex: Knex): Promise<void> {
+  await knex.schema.dropTable('transactions')
+}
+```
+- Execute migration for the create tables and columns on your database.
+
+```bash
+#Execute migration from the up function with queries for your database
+$ npm run knex migrate:latest
+```
+- Execute rollback for remove the last created tables and columns from the up function.
+
+```bash
+#Execute migration from the up function with queries for your database
+$ npm run knex migrate:rollback
+```
