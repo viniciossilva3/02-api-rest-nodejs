@@ -296,3 +296,9 @@ DATABASE_URL="your-database-url-here"
 ".gitignore"
 .env
 ```
+- Import your .env file in the main file in your project for the use enviroment variables in your code.
+
+```bash
+"database.ts"
+import 'dotenv/config'
+```
