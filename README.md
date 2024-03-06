@@ -270,3 +270,29 @@ $ npm run knex migrate:latest
 #Execute migration from the up function with queries for your database
 $ npm run knex migrate:rollback
 ```
+## dotenv
+- Now install dotenv package on your project and install too the [DotENV](https://open-vsx.org/extension/mikestead/dotenv) extension for the your VSCODE.
+
+```bash
+#Install dotenv on your project
+$ npm install dotenv
+```
+- Create the enviroment variables file from your project.
+
+```bash
+".env"
+DATABASE_URL="./db/app.db"
+```
+- Create the enviroment variable file example for your project.
+- For security purposes, do not create it containing passwords or other important keys for your application, remember that it is just an example file so that future developers know what variables are necessary to use the application.
+
+```bash
+".env.example"
+DATABASE_URL="your-database-url-here"
+```
+- Add the .env file to the .gitignore to prevent your file be uploaded on your github containing important data.
+
+```bash
+".gitignore"
+.env
+```
